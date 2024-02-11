@@ -58,7 +58,7 @@
               href="#"
               class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
             >
-            <img src="~/public/bell.svg" alt="">
+            <img src="/bell.svg" alt="">
               <span class="flex-1 ms-3 whitespace-nowrap text-text-color"
                 >Notification</span
               >
@@ -73,7 +73,7 @@
               href="#"
               class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
             >
-              <img src="~/public/user.svg" alt="">
+              <img src="/user.svg" alt="">
               <span class="flex-1 ms-3 whitespace-nowrap text-text-color"
                 >Users</span
               >
@@ -84,7 +84,7 @@
               to="/ViewFiles"
               class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
             >
-              <img src="~/public/file.svg" alt="">
+              <img src="/file.svg" alt="">
               <span class="flex-1 ms-3 whitespace-nowrap text-text-color"
                 >Files</span
               >
