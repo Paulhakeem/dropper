@@ -5,3 +5,8 @@
 body{
     background-color: #272e38;
 }
+ @media (max-width: 768px) { 
+    #footer {
+        padding-top: 1.5em;
+    }
+  }

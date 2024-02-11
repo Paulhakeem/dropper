@@ -35,6 +35,9 @@
 </template>
 
 <script setup>
+// definePageMeta({
+//   middleware: ["auth"]
+// })
 useHead({
   titleTemplate: "upload your files",
 });
