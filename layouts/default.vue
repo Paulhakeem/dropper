@@ -8,7 +8,7 @@
       >
         <div>
           <a
-            class="flex-none text-xl font-semibold text-light-blue dark:text-white dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600 lg:text-4xl"
+            class="flex-none text-xl font-semibold text-light-blue dark:text-white dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600 lg:text-2xl"
             href="#"
             aria-label="Brand"
             >P.R.E</a

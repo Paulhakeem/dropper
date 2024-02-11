@@ -4,7 +4,7 @@
     <sidebar />
     <!-- end of sidebar -->
 
-    <div id="home" class="p-4 sm:ml-64 md:pt-18">
+    <div id="home" class="p-4 sm:ml-64 md:pt-15">
       <div class="p-4 h-96">
         <div id="homepage" class="text-center justify-center m-auto">
           <h2 class="text-text-color font-semibold text-2xl md:text-4xl">Welcome!!🤗</h2>
