@@ -12,7 +12,6 @@
           <span
             class="py-1.5 px-2.5 inline-flex justify-center items-center gap-x-2 rounded-full bg-gray-200 font-semibold text-sm text-gray-600 dark:bg-gray-700 dark:text-gray-400"
           >
-            <font-awesome-icon :icon="['fas', 'chevron-right']" />
           </span>
         </a>
       </div>
@@ -43,7 +42,7 @@
           class="inline-flex justify-center items-center gap-x-3 text-center bg-light-blue text-gray text-sm font-medium rounded-md py-3 px-4 hover:bg-gray hover:text-light-blue hover:border hover:border-light-blue"
         >
           Get started
-          <font-awesome-icon :icon="['fas', 'chevron-right']" />
+         <img src="/chevright.svg" alt="">
         </nuxt-link>
 
         <nuxt-link to="/signIn">
@@ -55,7 +54,7 @@
             <span
               class="flex justify-center items-center bg-gray-200 rounded-md w-7 h-7 dark:bg-gray-700 dark:text-gray-400"
             >
-              <font-awesome-icon :icon="['far', 'clipboard']" />
+              <img src="/board.svg" alt="">
             </span>
           </button>
         </nuxt-link>
