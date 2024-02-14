@@ -11,7 +11,7 @@
       >
         <input
           @change="useStorage.handleImageUpload"
-          ref="myfile"
+          ref="file"
           type="file"
           multiple
           class="absolute inset-0 z-50 w-full h-full p-0 m-0 outline-none opacity-0 cursor-pointer"
@@ -59,7 +59,7 @@
 
     <!-- images info -->
     <section>
-      <div></div>
+    <p class="text-text-color font-medium first-letter:uppercase">{{useStorage.imageName.name}}</p>
     </section>
   </div>
   <!-- end of uploading -->

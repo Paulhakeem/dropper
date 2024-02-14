@@ -1,13 +1,7 @@
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
-import {
-  doc,
-  getFirestore,
-  setDoc,
-  collection,
-  getDocs,
-} from "firebase/firestore";
+import { doc, setDoc } from "firebase/firestore";
 export const useStorageStore = defineStore("storage", () => {
-  const imageSelected = useState("imageSelected", () => null);
+  const imageName = useState("imageName", () => '');
   const uploadProgress = useState("uploadProgress", () => 0);
   const imageURL = useState("imageURL", () => null);
   const data = ref([]);
@@ -15,19 +9,22 @@ export const useStorageStore = defineStore("storage", () => {
   const { $storage } = useNuxtApp();
 
   const handleImageUpload = (event) => {
-    imageSelected.value = event.target.files[0];
-    };
+    const file = event.target.files[0];
+    imageName.value = file
+    console.log(file);
+  };
 
   // uploading images
   const uploadImage = async () => {
-    if (imageSelected.value) {
+    if (imageName.value) {
+
       const storageReference = ref(
         $storage,
-        "images/" + imageSelected.value.name
+        "images/" + imageName.value.name
       );
       const uploadTask = uploadBytesResumable(
         storageReference,
-        imageSelected.value
+        imageName.value,
       );
 
       try {
@@ -49,11 +46,13 @@ export const useStorageStore = defineStore("storage", () => {
           },
           (error) => {
             // Handle upload errors
-         alert(error.message)
+            alert(error.message);
           },
           async () => {
             const downloadURL = getDownloadURL(uploadTask.snapshot.ref);
-           imageURL.value = downloadURL
+            imageURL.value = downloadURL;
+            console.log(downloadURL);
+            // saveInfo(file, downloadURL);
           }
         );
       } catch (error) {
@@ -62,30 +61,24 @@ export const useStorageStore = defineStore("storage", () => {
     }
   };
 
-  // fetching data
-  // const fetchAll = async () => {
-  //   try {
-  //     const querySnapshot = await getDocs(
-  //       collection($firestore, "uploadFile")
-  //     );
-  //     const documents = [];
-  //     querySnapshot.forEach((doc) => {
-  //       documents.push({ id: doc.id, ...doc.data() });
-  //     });
-  //     data.value = documents
-  //     console.log("Fetched Documents:", documents);
-  //   } catch (error) {
-  //     console.error("Error fetching documents: ", error);
-  //   }
+  // const saveInfo = async (file, downloadURL) => {
+  //   await setDoc(doc(db, "uploadedFile"), {
+  //     fileName: file?.name,
+  //     fileSize: file?.size,
+  //     fileType: file?.type,
+  //     fileUrl: downloadURL,
+  //     userEmail: user?.primaryEmailAddress?.emailAddress,
+  //     userName: user?.fullName,
+  //     password: "",
+  //   });
   // };
-  // fetchAll()
+
   return {
-    imageSelected,
+    imageName,
     handleImageUpload,
     uploadImage,
     imageURL,
     uploadProgress,
-    // fetchAll,
     data,
   };
 });
