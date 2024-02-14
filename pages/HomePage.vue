@@ -1,5 +1,5 @@
 <template>
-    <main class="h-screen">
+  <main class="h-screen">
     <!-- sidebar -->
     <sidebar />
     <!-- end of sidebar -->
@@ -7,7 +7,9 @@
     <div id="home" class="p-4 sm:ml-64 md:pt-15">
       <div class="p-4 h-96">
         <div id="homepage" class="text-center justify-center m-auto">
-          <h2 class="text-text-color font-semibold text-2xl md:text-4xl">Welcome!!🤗</h2>
+          <h2 class="text-text-color font-semibold text-2xl md:text-4xl">
+            Welcome!!🤗
+          </h2>
           <p class="text-text-color text-md pt-4">
             Get started by uploading your files
           </p>
@@ -29,7 +31,7 @@
           <upload-input />
           <!-- upload end -->
         </div>
-    
+       
       </div>
     </div>
   </main>
@@ -39,9 +41,8 @@
 // definePageMeta({
 //   middleware: ["auth"]
 // })
+const useStorage = useStorageStore();
 useHead({
   titleTemplate: "upload your files",
 });
 </script>
-
-

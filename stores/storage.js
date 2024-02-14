@@ -11,7 +11,6 @@ export const useStorageStore = defineStore("storage", () => {
   const handleImageUpload = (event) => {
     const file = event.target.files[0];
     imageName.value = file
-    console.log(file);
   };
 
   // uploading images
