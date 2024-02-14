@@ -57,7 +57,7 @@
           >
         </div>
       </div>
-      <section class="">
+      <section v-if="useStorage.imageName">
         <p class="text-text-color font-medium first-letter:uppercase pt-6">
           Name: {{ useStorage.imageName.name }}
         </p>
