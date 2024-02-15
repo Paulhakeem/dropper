@@ -69,6 +69,8 @@
 
 <script setup>
 const useStorage = useStorageStore();
+// const imageURL = ref();
+// const { metadata, fetchMetadata } = useFetchImage(imageURL);
 </script>
 
 <style lang="scss" scoped></style>

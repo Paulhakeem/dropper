@@ -1,29 +1,26 @@
-import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
-import { doc, setDoc } from "firebase/firestore";
+import { ref, uploadBytesResumable, getDownloadURL, getMetadata } from "firebase/storage";
 export const useStorageStore = defineStore("storage", () => {
-  const imageName = useState("imageName", () => '');
+  const imageName = useState("imageName", () => "");
   const uploadProgress = useState("uploadProgress", () => 0);
   const imageURL = useState("imageURL", () => null);
-  const data = ref([]);
 
   const { $storage } = useNuxtApp();
 
   const handleImageUpload = (event) => {
     const file = event.target.files[0];
-    imageName.value = file
+    imageName.value = file;
   };
 
   // uploading images
   const uploadImage = async () => {
     if (imageName.value) {
+      const metadata = { contentType: imageName.value.type };
 
-      const storageReference = ref(
-        $storage,
-        "images/" + imageName.value.name
-      );
+      const storageReference = ref($storage, "images/" + imageName.value.name);
       const uploadTask = uploadBytesResumable(
         storageReference,
         imageName.value,
+        metadata
       );
 
       try {
@@ -51,26 +48,15 @@ export const useStorageStore = defineStore("storage", () => {
             const downloadURL = getDownloadURL(uploadTask.snapshot.ref);
             imageURL.value = downloadURL;
             console.log(downloadURL);
-            // saveInfo(file, downloadURL);
           }
         );
       } catch (error) {
         console.error("An error occurred:", error);
       }
     }
+
   };
 
-  // const saveInfo = async (file, downloadURL) => {
-  //   await setDoc(doc(db, "uploadedFile"), {
-  //     fileName: file?.name,
-  //     fileSize: file?.size,
-  //     fileType: file?.type,
-  //     fileUrl: downloadURL,
-  //     userEmail: user?.primaryEmailAddress?.emailAddress,
-  //     userName: user?.fullName,
-  //     password: "",
-  //   });
-  // };
 
   return {
     imageName,
@@ -78,6 +64,5 @@ export const useStorageStore = defineStore("storage", () => {
     uploadImage,
     imageURL,
     uploadProgress,
-    data,
   };
 });
