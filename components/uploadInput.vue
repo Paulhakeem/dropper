@@ -63,7 +63,6 @@
         </p>
       </section>
       <img :src="useStorage.imageURL">
-      <button @click="useFetch.fetchData" class="bg-text-color text-gray">click me</button>
     </div>
   </section>
   <!-- end of uploading -->
@@ -71,7 +70,6 @@
 
 <script setup>
 const useStorage = useStorageStore();
-const useFetch = useFetchStore()
 // const imageURL = ref();
 // const { metadata, fetchMetadata } = useFetchImage(imageURL);
 </script>
