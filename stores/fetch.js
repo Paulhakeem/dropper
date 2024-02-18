@@ -10,7 +10,8 @@ export const useFetchStore = defineStore("fetchData", () => {
     const forestRef = ref($storage, "images/FISHION.jpg");
     getMetadata(forestRef)
       .then((metadata) => {
-       
+       const name = metadata.name
+       console.log(name);
       })
       .catch((error) => {
         console.log(error);
