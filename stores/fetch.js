@@ -3,36 +3,44 @@ import { ref, getMetadata } from "firebase/storage";
 export const useFetchStore = defineStore("fetchData", () => {
   const { $storage } = useNuxtApp();
   const { $firestore } = useNuxtApp();
-
-
+  const name = ref('')
   // Get metadata properties
   const fetchData = async () => {
-    const forestRef = ref($storage, "images/FISHION.jpg");
+    const forestRef = ref($storage, `images/FISHION.jpg`);
+    const fetchedImage = [];
     getMetadata(forestRef)
       .then((metadata) => {
-       const name = metadata.name
-       console.log(name);
+        const fileFetched = {
+          name: metadata.name,
+          type: metadata.type,
+          size: metadata.size,
+        };
+        console.log(metadata);
+        fetchedImage.push(fileFetched);
+       console.log(fileFetched);
       })
       .catch((error) => {
         console.log(error);
       });
+
+      if (fetchedImage) {
+        addDoc(collection($firestore, "uploadFiles"), {
+       });
+  
+      }
   };
 
   // store images data in firestore
-//   const saveImageData = () => {
-//     addDoc(collection($firestore, "uploadFiles"), {
-//       name: name.value,
-//       type: type.value,
-//       size: size.value,
-//     });
-//   };
+  //   const saveImageData = () => {
+  //    
+  //   };
 
-//   onMounted(() => {
-//     saveImageData();
-//   });
+  //   onMounted(() => {
+  //     saveImageData();
+  //   });
 
   return {
     fetchData,
-   
+    name
   };
 });
