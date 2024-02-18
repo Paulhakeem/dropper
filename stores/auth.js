@@ -10,6 +10,7 @@ export const useAuthStore = defineStore("auth", () => {
     if (user) {
       console.log(user);
     }
+    navigateTo('/HomePage')
   };
 
   const signIn = () => {
@@ -17,6 +18,7 @@ export const useAuthStore = defineStore("auth", () => {
     if (user) {
       console.log(user);
     }
+    navigateTo('/HomePage')
   };
 
   const useGoogle = () => {
@@ -24,6 +26,7 @@ export const useAuthStore = defineStore("auth", () => {
     if (user) {
       console.log(user);
     }
+    navigateTo('/HomePage')
   };
   return { email, password, signUp, signIn, useGoogle };
 });

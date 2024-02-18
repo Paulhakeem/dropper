@@ -62,6 +62,7 @@
           Name: {{ useStorage.imageName.name }}
         </p>
       </section>
+      <img :src="useStorage.imageURL">
     </div>
   </section>
   <!-- end of uploading -->
