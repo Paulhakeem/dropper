@@ -1,8 +1,15 @@
-import { ref, uploadBytesResumable, getDownloadURL, getMetadata } from "firebase/storage";
+import {
+  ref,
+  uploadBytesResumable,
+  getDownloadURL,
+  getMetadata,
+} from "firebase/storage";
 export const useStorageStore = defineStore("storage", () => {
   const imageName = useState("imageName", () => "");
   const uploadProgress = useState("uploadProgress", () => 0);
   const imageURL = useState("imageURL", () => null);
+  const notification = useState("notification", () => "")
+  const errorMessage = useState("errorMessage", () => "")
 
   const { $storage } = useNuxtApp();
 
@@ -40,23 +47,31 @@ export const useStorageStore = defineStore("storage", () => {
                 break;
             }
           },
-          (error) => {
-            // Handle upload errors
-            alert(error.message);
-          },
-          async () => {
-            const downloadURL = getDownloadURL(uploadTask.snapshot.ref);
-            imageURL.value = downloadURL;
-            console.log(downloadURL);
+          () => {
+            // Upload completed successfully, now we can get the download URL
+            const url = getDownloadURL(uploadTask.snapshot.ref);
+            const getImageUrl = (image, error) => {
+              return new Promise((resolve, reject) => {
+                if (url) {
+                  resolve(image);
+                } else {
+                  reject(error);
+                }
+              });
+            };
+            getImageUrl(url, "An error occurs");
           }
         );
       } catch (error) {
         console.error("An error occurred:", error);
       }
     }
-
+    if (uploadProgress === 100) {
+      return (notification.value = "Image uploaded completed!");
+    } else {
+      return (errorMessage.value = "Error occurs");
+    }
   };
-
 
   return {
     imageName,
@@ -64,5 +79,7 @@ export const useStorageStore = defineStore("storage", () => {
     uploadImage,
     imageURL,
     uploadProgress,
+    notification,
+    errorMessage,
   };
 });
