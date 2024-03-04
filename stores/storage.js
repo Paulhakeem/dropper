@@ -8,8 +8,10 @@ export const useStorageStore = defineStore("storage", () => {
   const imageName = useState("imageName", () => "");
   const uploadProgress = useState("uploadProgress", () => 0);
   const imageURL = useState("imageURL", () => null);
-  const notification = useState("notification", () => "")
+  const textMessage = useState("notification", () => "")
   const errorMessage = useState("errorMessage", () => "")
+
+  const notification = ref([])
 
   const { $storage } = useNuxtApp();
 
@@ -67,9 +69,13 @@ export const useStorageStore = defineStore("storage", () => {
       }
     }
     if (uploadProgress === 100) {
-      return (notification.value = "Image uploaded completed!");
+      const text = "Image uploaded completed!"
+      textMessage.value = text
+      notification.value.push(textMessage.value)
     } else {
-      return (errorMessage.value = "Error occurs");
+      const error = "Error occurs"
+      errorMessage.value = error
+      notification.value.push(errorMessage.value)
     }
   };
 
@@ -81,5 +87,6 @@ export const useStorageStore = defineStore("storage", () => {
     uploadProgress,
     notification,
     errorMessage,
+    textMessage
   };
 });
