@@ -38,9 +38,9 @@
 </template>
 
 <script setup>
-// definePageMeta({
-//   middleware: ["auth"]
-// })
+definePageMeta({
+  middleware: ["auth"]
+})
 const useStorage = useStorageStore();
 useHead({
   titleTemplate: "upload your files",
