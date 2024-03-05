@@ -1,5 +1,35 @@
 <template>
   <div>
+    <!-- notification modal -->
+
+    <noificationModal :modalActive="modalActive" @close-modal="toggleModal">
+      <h1
+        class="text-md font-semibold pt-2 text-center text-light-gray tracking-wide pb-3"
+      >
+        Notifications
+      </h1>
+      <div v-for="alert in useStorage.notification" :key="alert.id" class="">
+        <ul class="pb-2">
+          <li class="flex gap-2 bg-light-gray rounded-md p-2 text-text-color">
+            <div class="pt-1">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="18"
+              height="18"
+              viewBox="0 0 24 24"
+            >
+              <path
+                fill="#228b22"
+                d="m10.6 13.8l-2.15-2.15q-.275-.275-.7-.275t-.7.275q-.275.275-.275.7t.275.7L9.9 15.9q.3.3.7.3t.7-.3l5.65-5.65q.275-.275.275-.7t-.275-.7q-.275-.275-.7-.275t-.7.275zM12 22q-2.075 0-3.9-.788t-3.175-2.137q-1.35-1.35-2.137-3.175T2 12q0-2.075.788-3.9t2.137-3.175q1.35-1.35 3.175-2.137T12 2q2.075 0 3.9.788t3.175 2.137q1.35 1.35 2.138 3.175T22 12q0 2.075-.788 3.9t-2.137 3.175q-1.35 1.35-3.175 2.138T12 22"
+              />
+            </svg>
+          </div>
+          <p class="pb-2">{{ alert.text }}</p>
+          </li>
+        </ul>
+      </div>
+    </noificationModal>
+
     <button
       data-drawer-target="default-sidebar"
       data-drawer-toggle="default-sidebar"
@@ -53,20 +83,19 @@
             </a>
           </li>
 
-          <li>
+          <li @click="toggleModal">
             <a
               href="#"
               class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
             >
-            <img src="/bell.svg" alt="">
+              <img src="/bell.svg" alt="" />
               <span class="flex-1 ms-3 whitespace-nowrap text-text-color"
                 >Notification</span
               >
-              <span 
+              <span
                 class="inline-flex items-center justify-center text-text-color w-3 h-3 p-3 ms-3 text-sm font-medium text-blue-800 bg-blue-100 rounded-full dark:bg-blue-900 dark:text-blue-300"
-                >{{useStorage.notification.length}}</span
+                >{{ useStorage.notification.length }}</span
               >
-          
             </a>
           </li>
           <li>
@@ -74,7 +103,7 @@
               href="#"
               class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
             >
-              <img src="/user.svg" alt="">
+              <img src="/user.svg" alt="" />
               <span class="flex-1 ms-3 whitespace-nowrap text-text-color"
                 >Users</span
               >
@@ -85,7 +114,7 @@
               to="/ViewFiles"
               class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
             >
-              <img src="/file.svg" alt="">
+              <img src="/file.svg" alt="" />
               <span class="flex-1 ms-3 whitespace-nowrap text-text-color"
                 >Files</span
               >
@@ -98,7 +127,12 @@
 </template>
 
 <script setup>
-const useStorage = useStorageStore()
+import noificationModal from "./noificationModal.vue";
+const useStorage = useStorageStore();
+const modalActive = ref(null);
+const toggleModal = () => {
+  modalActive.value = !modalActive.value;
+};
 </script>
 
 <style lang="scss" scoped></style>

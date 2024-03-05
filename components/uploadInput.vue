@@ -52,7 +52,7 @@
             :style="{ width: useStorage.uploadProgress + '%' }"
           ></div>
           <span
-            class="absolute inset-0 flex items-center justify-center text-sm font-medium text-gray-900"
+            class="absolute inset-0 flex items-center justify-center text-xs font-normal text-gray-900"
             >{{ useStorage.uploadProgress }}%</span
           >
         </div>
