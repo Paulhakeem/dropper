@@ -4,24 +4,14 @@ import {
   getDownloadURL,
   getMetadata,
 } from "firebase/storage";
+import { toast } from "vue3-toastify";
 export const useStorageStore = defineStore("storage", () => {
   const imageName = useState("imageName", () => "");
   const uploadProgress = useState("uploadProgress", () => 0);
   const imageURL = useState("imageURL", () => null);
 
-  const message = ref("Upload succesfully completed");
-  const error = ref( "Image Uploaded fail");
-  const notification = ref([
-    {
-      id: 1,
-      text: message,
-      error: error
-    },
-    
-  ]);
-  if(uploadProgress === 100) {
-    console.log('hello');
-  }
+  const notification = ref([]);
+
   const { $storage } = useNuxtApp();
 
   const handleImageUpload = (event) => {
@@ -55,6 +45,10 @@ export const useStorageStore = defineStore("storage", () => {
                   (snapshot.bytesTransferred / snapshot.totalBytes) * 100
                 );
                 uploadProgress.value = progress;
+                if (progress === 100) {
+                return toast.success('Upload completed!')
+                }
+
                 break;
             }
           },
@@ -86,7 +80,5 @@ export const useStorageStore = defineStore("storage", () => {
     imageURL,
     uploadProgress,
     notification,
-    message,
-    error
   };
 });

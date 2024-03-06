@@ -8,7 +8,8 @@
       >
         Notifications
       </h1>
-      <div v-for="alert in useStorage.notification" :key="alert.id" class="">
+     <main>
+       <div v-for="alert in useStorage.notification" :key="alert.id" class="">
         <ul class="pb-2">
           <li class="flex gap-2 bg-light-gray rounded-md p-2 text-text-color">
             <div class="pt-1">
@@ -28,6 +29,7 @@
           </li>
         </ul>
       </div>
+     </main>
     </noificationModal>
 
     <button

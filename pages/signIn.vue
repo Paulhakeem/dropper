@@ -161,6 +161,7 @@
 
 <script setup>
 const useAuth = useAuthStore();
+const isAuthenticating = useState("isAuthenticating", () => false);
 useHead({
   titleTemplate: "sign in user",
 });
