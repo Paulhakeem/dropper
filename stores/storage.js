@@ -10,6 +10,7 @@ export const useStorageStore = defineStore("storage", () => {
   const uploadProgress = useState("uploadProgress", () => 0);
   const imageURL = useState("imageURL", () => null);
 
+  const text = ref('hello')
   const notification = ref([]);
 
   const { $storage } = useNuxtApp();
@@ -46,6 +47,7 @@ export const useStorageStore = defineStore("storage", () => {
                 );
                 uploadProgress.value = progress;
                 if (progress === 100) {
+                  console.log(text);
                 return toast.success('Upload completed!')
                 }
 
@@ -80,5 +82,6 @@ export const useStorageStore = defineStore("storage", () => {
     imageURL,
     uploadProgress,
     notification,
+    text
   };
 });

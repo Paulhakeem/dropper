@@ -23,7 +23,8 @@
               </div>
 
               <div class="mt-5">
-                <button @click="useAuth.useGoogle"
+                <button
+                  @click="useAuth.useGoogle"
                   type="button"
                   class="w-full py-3 px-4 inline-flex justify-center items-center gap-x-2 text-sm font-medium rounded-lg border border-light-blue text-text-color shadow-sm hover:bg-light-blue hover:text-button-color disabled:opacity-50 disabled:pointer-events-none"
                 >
@@ -72,7 +73,7 @@
                       >
                       <div class="relative">
                         <input
-                         v-model="useAuth.email"
+                          v-model="useAuth.email"
                           type="email"
                           id="email"
                           name="email"
@@ -111,7 +112,7 @@
                       </div>
                       <div class="relative">
                         <input
-                         v-model="useAuth.password"
+                          v-model="useAuth.password"
                           type="password"
                           id="password"
                           name="password"
@@ -158,7 +159,8 @@
 </template>
 
 <script setup>
-const useAuth = useAuthStore()
+const isAuthenticating = useState("isAuthenticating", () => false);
+const useAuth = useAuthStore();
 useHead({
   titleTemplate: "sign up user",
 });
